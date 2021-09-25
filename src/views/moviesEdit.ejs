@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('partials/head', {title:'Edición'}) %>
+
+<%- include('partials/header') %> 
+
+<body>
+    
+    <h1 class="titulo">Película a Editar:  <%= movie.title %></h1>
+    <section class="formulario">
+        <form action="/edit/<%= movie.id %>?_method=PUT" method="POST">
+            <label for="title">Title </label>
+            <p><input type="text" name="title" id="title" value="<%= movie.title %>" required></p>
+            <label for="rating">Rating </label>
+            <p><input type="number" name="rating" id="rating" value="<%= movie.rating %>" required></p>
+            <label for="awards">Awards </label>
+            <p><input type="number" name="awards" id="awards" value="<%= movie.awards %>" required></p>
+            <label for="release_date">Release date </label>
+            <p><input type="date" name="release_date" id="release_date" value="<%= movie.release_date %>" required></p>
+            <label for="length">Length </label>
+            <p><input type="number" name="length" id="" value="<%= movie.length %>" required></p>
+            <br>
+            <p> <button class="botonAgregar" type="submit">Actualizar</button>
+        
+            <a  class="botonVolver" href="/movies">Volver</a></p>
+        </form>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+
+</html>

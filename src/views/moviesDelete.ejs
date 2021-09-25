@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('partials/head', {title:'Borrar pelicula?'}) %>
+
+<%- include('partials/header') %> 
+
+<body>
+    
+    <h1>Estas seguro de querer borrar esta película: <%= movie.title %>???</h1>
+    <p>
+        <form action="/delete/<%= movie.id %>?_method=DELETE" method="POST">
+            <br>
+            <p> <button class="botonAgregar" type="submit">Borrar</button>
+            
+            <a  class="botonVolver" href="/movies">Volver</a></p>
+
+        </form>
+    </p>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</body>
+</html>

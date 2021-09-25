@@ -1,17 +1,26 @@
 require('dotenv').config()
 
 const express = require('express');
+const app = express();
 const path = require('path');
 
 const dbConnectionTest = require('./utils/dbConnectionTest')
 dbConnectionTest();
 
+const methodOverride = require('method-override');
+
+/* manejo de formularios */
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
+/* configura métodos PUT y DELETE */
+app.use(methodOverride('_method'));
 
 const indexRouter = require('./routes/index');
 const actorsRoutes = require('./routes/actorsRoutes');
 const moviesRoutes = require('./routes/moviesRoutes');
 const genresRoutes = require('./routes/genresRoutes');
-const app = express();
+
 
 // view engine setup
 app.set('views', path.resolve(__dirname, './views'));
