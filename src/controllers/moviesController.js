@@ -1,4 +1,5 @@
-const db = require('../database/models')
+const db = require('../database/models');
+const { validationResult } = require ('express-validator');
 
 module.exports = {
     list : (req,res) => {
@@ -46,6 +47,10 @@ module.exports = {
         res.render('moviesAdd') 
     },
     create: function (req, res) {
+
+        let errors = validationResult(req);
+
+        if(errors.isEmpty()){
        const {title,rating,awards,release_date,length} = req.body;
 
        db.Pelicula.create({
@@ -58,6 +63,15 @@ module.exports = {
        res.redirect('/movies')
        .catch(error => console.log(error))
         
+    }else{
+        return res.render('moviesAdd',{
+
+            errores : errors.mapped(),
+            old : req.body
+        })
+    }
+
+
     },
     edit: function(req, res) {
         db.Pelicula.findByPk(req.params.id).then(movie =>{
@@ -66,12 +80,15 @@ module.exports = {
             
             } )
           })
-          .catch(error => console.log(error))
+          
         
     },
     update: function (req,res) {
-        const {title,rating,awards,release_date,length} = req.body;
 
+        let errors = validationResult(req);
+
+        const {title,rating,awards,release_date,length} = req.body;
+    if(errors.isEmpty()){
        db.Pelicula.update({
            title,
            rating,
@@ -85,7 +102,19 @@ module.exports = {
        })
        res.redirect('/movies')
        .catch(error => console.log(error))
-    },
+       
+    }else{
+        db.Pelicula.findByPk(req.params.id).then(movie =>{
+            res.render('moviesEdit', {
+                movie,
+                errores : errors.mapped()
+            
+            } )
+          })
+    }
+
+
+},
     erase: function (req, res) {
         db.Pelicula.findByPk(req.params.id).then(movie =>{
             res.render('moviesDelete', {

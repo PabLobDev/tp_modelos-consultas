@@ -10,21 +10,36 @@
     <br>
     <section class="formulario">
         <form action="/add" method="POST">
-            <label for="title">Title </label>
-            <p><input type="text" name="title" id="" required></p>
+        <div class="box-form">
+            <div class="input-box-form">
+            <label for="title">Título </label>
+            <input type="text" name="title" id="" value="<%= locals.old && old.title ? old.title : null %>">
+            <span class="error"> <%= locals.errores && errores.title ? errores.title.msg : null %> </span>
+            </div>
+            <div class="input-box-form">
             <label for="rating">Rating </label>
-            <p><input type="number" name="rating" id="" required> </p>
-            <label for="awards">Awards </label>
-            <p><input type="number" name="awards" id="" required></p>
-            <label for="release_date">Release date </label>
-            <p><input type="date" name="release_date" id="" required></p>
-            <label for="length">Length </label>
-            <p><input type="number" name="length" id="" required></p>
-
+            <input type="number" name="rating" id="" value="<%= locals.old && old.rating ? old.rating : null %>">
+            <span class="error"> <%= locals.errores && errores.rating ? errores.rating.msg : null %> </span>
+            </div> 
+            <div class="input-box-form">
+            <label for="awards">Premios </label>
+            <input type="number" name="awards" id="" value="<%= locals.old && old.awards ? old.awards : null %>">
+            <span class="error"> <%= locals.errores && errores.awards ? errores.awards.msg : null %> </span>
+            </div>
+            <div class="input-box-form">
+            <label for="release_date">fecha de realización</label>
+            <input type="date" name="release_date" id="" value="<%= locals.old && old.release_date ? old.release_date : null %>">
+            <span class="error"> <%= locals.errores && errores.release_date ? errores.release_date.msg : null %> </span>
+            </div>
+            <div class="input-box-form">
+            <label for="length">Duración</label>
+            <input type="number" name="length" id="" value="<%= locals.old && old.length ? old.length : null %>">
+            <span class="error"> <%= locals.errores && errores.length ? errores.length.msg : null %> </span>
+            </div>
             <br>
             <p> <button class="botonAgregar" type="submit">Agregar</button>
-            
             <a  class="botonVolver" href="/movies">Volver</a></p>
+        </div>
         </form>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
